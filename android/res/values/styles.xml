@@ -1,0 +1,9 @@
+<resources>
+    <style name="FarmTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#F7F6EF</item>
+        <item name="android:colorAccent">#145F4A</item>
+        <item name="android:statusBarColor">#FFFDF7</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">#142D24</item>
+    </style>
+</resources>

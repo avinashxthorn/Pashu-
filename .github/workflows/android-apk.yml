@@ -6,6 +6,7 @@ on:
     paths:
       - 'android/**'
       - 'index.html'
+      - '.github/workflows/android-apk.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,8 +20,22 @@ jobs:
         with:
           name: Pashu-Saathi-APK
           path: android/out/Pashu-Saathi.apk
-      - name: Attach APK to a GitHub release
+      - name: Attach APK to GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "android-${GITHUB_RUN_NUMBER}" android/out/Pashu-Saathi.apk --title "Pashu Saathi for Android" --notes "Signed demonstration build of commit ${GITHUB_SHA}. Records are stored on this device."
+          gh release create "android-${GITHUB_RUN_NUMBER}" android/out/Pashu-Saathi.apk --target "$GITHUB_SHA" --title "Pashu Saathi for Android" --notes "Signed offline demonstration APK. Records are stored on this device."
+  launch-test:
+    runs-on: ubuntu-latest
+    needs: build
+    timeout-minutes: 18
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: Pashu-Saathi-APK
+          path: android/out
+      - name: Install and open in an Android emulator
+        run: bash android/smoke.sh

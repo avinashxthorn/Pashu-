@@ -5,3 +5,33 @@
 
 .ps table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}.ps th,.ps td{padding:7px 3px;border-bottom:1px solid var(--line);text-align:right}.ps th:first-child,.ps td:first-child{text-align:left}.ps th{color:var(--soft)}
 [data-platform="ios"] .ps.framed nav{padding-bottom:25px}
+.ps{--paper:#f6f5ee;--pine:#205a48;--dark:#20352d;--soft:#516057;--line:#dedfd4;--mint:#e4ead8}
+.ps header{background:#fffdf7}.ps .mark{border-radius:12px 12px 12px 4px;background:#235c48;color:#dfedb1}
+.ps .home-date,.ps .place,.ps .hero-key,.ps .hero-key span,.ps .species-band{display:flex;align-items:center}
+.ps .home-date{gap:7px;font-size:13px;color:#616e60}.ps .home-date svg,.ps .place svg{width:16px;height:16px}
+.ps .masthead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:5px 0 16px}
+.ps .masthead h1{font-family:Georgia,"Noto Serif Devanagari",serif;font-size:42px;letter-spacing:-1.9px;line-height:1.08;margin:0;font-weight:550}
+.ps .place{gap:4px;font-size:13px;color:#446049;max-width:45%;overflow-wrap:anywhere}
+.ps .ledger-hero{border-radius:20px 20px 20px 5px;background:#1c493b;color:#fffdf3;padding:20px}
+.ps .hero-columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ps .hero-columns button{display:block;text-align:left;color:#f9fbef;padding:0 0 2px}
+.ps .hero-columns button+button{border-left:1px solid #638373;padding-left:20px}
+.ps .hero-columns span{display:block;font-size:13px;font-weight:550;color:#daebdd}
+.ps .hero-columns strong{display:block;font-size:41px;font-weight:650;line-height:1.18;letter-spacing:-1.6px;font-variant-numeric:tabular-nums}
+.ps .hero-columns small{font-size:19px;display:inline;color:#d3e3d6}
+.ps .species-band{gap:3px;width:100%;height:8px;overflow:hidden;border-radius:6px;margin:18px 0 8px;background:#385d4c}
+.ps .species-band i{height:100%}.ps .hero-key{gap:5px 11px;flex-wrap:wrap}.ps .hero-key span{gap:4px;color:#f0f5e7;font-size:11px}
+.ps .hero-key i{width:6px;height:6px;border-radius:50%}.ps .home-actions{margin:12px 0 21px}
+.ps .home-actions .primary{background:#eac16f;color:#372b13}.ps .home-actions .secondary{border-color:#bec9ba}
+.ps .panel{box-shadow:0 2px 8px #404a2c05}.ps .care-panel{padding-top:12px}
+.ps .smalltotal{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;font-size:12px;font-weight:720;color:#675324;background:#f5eac8;border-radius:8px;vertical-align:middle}
+.ps .herd-section{margin:23px 0 18px}.ps .herd-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:11px}
+.ps .herd-grid button{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:4px 7px;border:1px solid var(--line);background:#fffef9;border-radius:13px;padding:10px;text-align:left}
+.ps .herd-grid button>span:last-child{grid-column:1 / -1;font-size:12px;font-weight:560;color:#48594c}
+.ps .herd-grid strong{font-size:22px;line-height:1.15;color:#254d39}
+.ps .metric-icon{display:grid;place-items:center;width:25px;height:25px;border-radius:7px;background:#e6eedf;color:#467259}
+.ps .metric-icon svg{width:16px;height:16px}.ps .mSick{color:#994b32;background:#f4dfd4}.ps .mPregnant{color:#805179;background:#f0e4ef}.ps .mMilking{color:#336a75;background:#e0edef}
+.ps .rowmain small{font-size:13px}.ps .datechip{font-size:12px}.ps .form .field{margin:17px 0}
+.ps .formfooter button,.ps .actions button{min-height:48px}.ps .primary,.ps .secondary{transition:background .15s ease,transform .15s ease}
+.ps button:active{transform:translateY(1px)}.ps nav{box-shadow:0 -2px 12px #283b2708;background:#fffdf8}.ps nav .active{background:#dee9d5}
+@media(prefers-reduced-motion:reduce){.ps *{transition:none!important}}
