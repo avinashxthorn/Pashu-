@@ -1,0 +1,34 @@
+name: Test released Android APK
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Android APK]
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - 'android/smoke.sh'
+      - '.github/workflows/android-smoke.yml'
+jobs:
+  install-and-launch:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download signed release APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_RUN: ${{ github.event.workflow_run.run_number }}
+        run: |
+          mkdir -p android/out
+          if [[ -n "$BUILD_RUN" ]]; then
+            gh release download "android-$BUILD_RUN" --pattern 'Pashu-Saathi.apk' --dir android/out
+          else
+            gh release download --pattern 'Pashu-Saathi.apk' --dir android/out
+          fi
+          sha256sum android/out/Pashu-Saathi.apk
+      - name: Install and open on Android 15
+        run: bash android/smoke.sh

@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 sdk="${ANDROID_HOME:-$ANDROID_SDK_ROOT}"
-api=31
-image="system-images;android-$api;google_apis;x86_64"
+api=35
+image="system-images;android-$api;default;x86_64"
 manager="$sdk/cmdline-tools/latest/bin"
-"$manager/sdkmanager" "$image" "emulator" "platform-tools"
+set +o pipefail
+yes | "$manager/sdkmanager" "$image" "emulator" "platform-tools"
+set -o pipefail
 echo no | "$manager/avdmanager" create avd --force -n farm-test -k "$image" --device pixel
 sudo chmod a+rw /dev/kvm
 adb="$sdk/platform-tools/adb"
-"$sdk/emulator/emulator" -avd farm-test -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect -no-snapshot > /tmp/pashu-emulator.log 2>&1 &
+"$sdk/emulator/emulator" -avd farm-test -no-window -no-audio -no-boot-anim -gpu swiftshader -no-snapshot > /tmp/pashu-emulator.log 2>&1 &
 emupid=$!
 trap 'kill "$emupid" 2>/dev/null || true' EXIT
 timeout 120 "$adb" wait-for-device
