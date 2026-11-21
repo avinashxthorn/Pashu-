@@ -1,0 +1,26 @@
+name: Android APK
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'android/**'
+      - 'index.html'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and verify offline Android package
+        run: bash android/build.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Pashu-Saathi-APK
+          path: android/out/Pashu-Saathi.apk
+      - name: Attach APK to a GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "android-${GITHUB_RUN_NUMBER}" android/out/Pashu-Saathi.apk --title "Pashu Saathi for Android" --notes "Signed demonstration build of commit ${GITHUB_SHA}. Records are stored on this device."
